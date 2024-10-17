@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from kkh_baseline_solar_llm import search_and_respond
+from latest_llm_chrome_noreranker_module import search_and_generate_response
 from flask_cors import CORS  # CORS 모듈 추가
 
 app = Flask(__name__)
@@ -12,7 +13,8 @@ def rag():
 
     try:
         # RAG 시스템에서 검색한 결과를 받아옴
-        result = search_and_respond(query)
+        # result = search_and_respond(query)
+        result = search_and_generate_response(query)
         return jsonify({
             'query': query,
             'answer': result if result else "No result"
